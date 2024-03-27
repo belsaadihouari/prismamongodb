@@ -1,22 +1,19 @@
+import { NextResponse } from "next/server";
 import prisma from "@/util/prismaClient";
 
-export default async function handlerAddProduct(req, res) {
-  if (req.method === "POST") {
-    try {
-      const addProduct = await prisma.product.create({
-        data: {
-          title: req.body.title,
-          description: req.body.description,
-          createdBy: req.body.createdBy,
-        },
-      });
-      
-      return res.json(addProduct);
-    } catch {
-      
-      return res.json({ message: "internal server error" });
-    }finally {
-      await prisma.$disconnect();
-    }
+export async function POST(req) {
+  try {
+    const request = await req.json();
+    const addProduct = await prisma.product.create({
+      data: {
+        title: request.title,
+        description: request.description,
+        createdBy: request.createdBy,
+      },
+    });
+
+    return NextResponse.json(addProduct);
+  } catch {
+    return NextResponse.json({ message: "internal server error" });
   }
 }

@@ -1,17 +1,7 @@
 import Head from "next/head";
-import Card from "@/component/card";
+import Cardproduct from "@/component/cardproduct";
 
-async function getData() {
-  const res = await fetch("http://localhost:3000/api/get/getmany");
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-  return res.json();
-}
-
-export default async function Pageone() {
-  const posts = await getData();
-
+export default function Home({ posts }) {
   return (
     <>
       <Head>
@@ -23,14 +13,24 @@ export default async function Pageone() {
 
       <div className="container">
         {posts.map((item, index) => (
-          <Card
+          <Cardproduct
             key={index}
             id={item.id}
-            username={item.username}
-            email={item.email}
+            title={item.title}
+            descrip={item.description}
           />
         ))}
       </div>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const res = await fetch("http://localhost:3000/api/get/getproductmany/route");
+  const posts = await res.json();
+  return {
+    props: {
+      posts,
+    },
+  };
 }
