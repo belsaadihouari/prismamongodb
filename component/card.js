@@ -13,7 +13,7 @@ const Card = ({ username, email, id }) => {
     const data = await res.json();
    
     if (data) {
-      // router.prefetch(`/`);
+      router.prefetch(`/`);
       router.push(`/`)
     }
   }

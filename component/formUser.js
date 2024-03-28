@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-import formusercss from "@/styles/formUser.module.css";
+import formusercss from "@/style/formUser.module.css";
 import { useRouter } from "next/navigation";
 import { motion, useAnimation } from "framer-motion";
 
@@ -20,17 +20,23 @@ const FormUser = () => {
       transform: "translateX(0%)",
     });
   }, []);
-  
+
+  // const handleCheckboxChange = () => {
+  //   const isadmin1 = isadmin.current.checked;
+  //   console.log('isadminValue:', isadminValue);
+  // };
 
   async function handleradd(eo) {
     eo.preventDefault();
+    console.log(isadmin.current.checked)
     try {
       const username1 = username.current.value;
       const email1 = email.current.value;
       const password1 = password.current.value;
-      const isadmin1 = (isadmin.current.value="on"? true:false);
       
-      const res = await fetch("http://localhost:3000/api/add/adduser/route", {
+      const isadmin1 = (isadmin.current.checked ===true? true:false);
+      
+      const res = await fetch("http://localhost:3000/api/add/adduser", {
         method: "POST",
         credentials: "include",
         headers: {
@@ -44,7 +50,7 @@ const FormUser = () => {
         }),
       });
       const data = await res.json();
-      console.log(data);
+      
       router.push("/");
     } catch (error) {
       return res.json["internal server error"];
@@ -114,13 +120,13 @@ const FormUser = () => {
           <div className={`${formusercss.containercheck}`}>
             <label htmlFor="checkbox">is Admin ? *</label>
             <input
-            
+            // onClick={handleCheckboxChange}
               ref={isadmin}
               placeholder=""
               type="checkbox"
               className={`${formusercss.input} ${formusercss.check}`}
               id="checkbox"
-              required
+              
             />
           </div>
 

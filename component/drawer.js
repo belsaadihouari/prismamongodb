@@ -40,17 +40,17 @@ function ResponsiveDrawer(props) {
       setMobileOpen(!mobileOpen);
     }
   };
-  function handlenavigate(text) {
-    if (text === "User") {
-      router.push(`/`);
-    }
-    if (text === "Products") {
-      router.push(`/products`);
-    }
-    if (text === "sales") {
-      router.push(`/sales`);
-    }
-  }
+  // function handlenavigate(text) {
+  //   if (text === "User") {
+  //     router.push(`/`);
+  //   }
+  //   if (text === "Products") {
+  //     router.push(`/products`);
+  //   }
+  //   if (text === "sales") {
+  //     router.push(`/sales`);
+  //   }
+  // }
 
   function handlenavigateadd(text) {
     if (text === "Add User") {
@@ -70,7 +70,7 @@ function ResponsiveDrawer(props) {
       <Divider />
       <List>
         {["user", "products", "sales"].map((text, index) => (
-          <Link prefetch={false} key={text} href={text === "user" ? "/" : `/${text}`} >
+          <Link className="linkdrawer" prefetch={false} key={text} href={text === "user" ? "/" : `/${text}`} >
           <ListItem
             
             // onClick={() => {

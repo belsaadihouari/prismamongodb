@@ -1,5 +1,6 @@
+"use client"
 import React, { useEffect, useRef } from "react";
-import formusercss from "@/styles/formUser.module.css";
+import formusercss from "@/style/formUser.module.css";
 import { useRouter } from "next/navigation";
 import { motion, useAnimation } from "framer-motion";
 
@@ -22,14 +23,14 @@ const FormProduct = () => {
     eo.preventDefault();
     try {
       const title1 = title.current.value;
-      console.log(title1)
+      
       const description1 = description.current.value;
-      console.log(description1)
+      
       const createdBy1 = createdBy.current.value;
-      console.log(createdBy1)
+      
 
       const res = await fetch(
-        "http://localhost:3000/api/add/addproduct/route",
+        "http://localhost:3000/api/add/addproduct",
         {
           method: "POST",
           credentials: "include",
@@ -39,12 +40,12 @@ const FormProduct = () => {
           body: JSON.stringify({
             title: title1,
             description: description1,
-            createdBy: parseInt(createdBy1),
+            createdBy: createdBy1,
           }),
         }
       );
       const data = await res.json();
-      console.log(data);
+      
       router.push("/products");
     } catch (error) {
       return res.json["internal server error"];
@@ -102,6 +103,7 @@ const FormProduct = () => {
               id="createdBy"
               required
               autoComplete="off"
+              maxLength={200}
             />
             <div className={formusercss.cut}></div>
             <label className={formusercss.iLabel} htmlFor="createdBy">

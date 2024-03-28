@@ -1,19 +1,7 @@
 import Head from "next/head";
-import Cardproduct from "@/component/cardproduct";
-import "@/app/globals.css";
-async function getData() {
-  const res = await fetch("http://localhost:3000/api/get/getproductmany", {
-    cache: "no-cache",
-  });
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-  return res.json();
-}
-
-export default async function Products() {
-  const posts = await getData();
-
+import Formproduct from "@/component/formproduct";
+import formusercss from "@/style/formUser.module.css"
+export default function Home({ posts }) {
   return (
     <>
       <Head>
@@ -23,16 +11,11 @@ export default async function Products() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="container border">
-        {posts.map((item, index) => (
-          <Cardproduct
-            key={index}
-            id={item.id}
-            title={item.title}
-            descrip={item.description}
-          />
-        ))}
+      <div className={formusercss.containerform}>
+        <Formproduct />
       </div>
     </>
   );
 }
+
+

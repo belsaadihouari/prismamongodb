@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import {  NextResponse } from "next/server";
 import prisma from "@/util/prismaClient";
 import crypto from "@/util/cryptDecrypt";
 import { validation } from "@/util/validationSchemaZod";

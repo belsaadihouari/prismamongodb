@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-import formusercss from "@/styles/formUser.module.css";
+import formusercss from "@/style/formUser.module.css";
 import { useRouter } from "next/navigation";
 import { motion, useAnimation } from "framer-motion";
 
@@ -26,7 +26,7 @@ const FormSales = () => {
       const productIs1 = productIs.current.value;
       const selBy1 = selBy.current.value;
 
-      const res = await fetch("http://localhost:3000/api/add/addsale/route", {
+      const res = await fetch("http://localhost:3000/api/add/addsale", {
         method: "POST",
         credentials: "include",
         headers: {
@@ -34,8 +34,8 @@ const FormSales = () => {
         },
         body: JSON.stringify({
           price: parseFloat(price1),
-          productIs: parseInt(productIs1),
-          selBy: parseInt(selBy1),
+          productIs: productIs1,
+          selBy: selBy1,
         }),
       });
       const data = await res.json();
@@ -81,6 +81,7 @@ const FormSales = () => {
               id="productIs"
               required
               autoComplete="off"
+              maxLength={200}
             />
             <div className={formusercss.cut}></div>
             <label className={formusercss.iLabel} htmlFor="productIs">
@@ -97,6 +98,7 @@ const FormSales = () => {
               id="selBy"
               required
               autoComplete="off"
+              maxLength={200}
             />
             <div className={formusercss.cut}></div>
             <label className={formusercss.iLabel} htmlFor="selBy">

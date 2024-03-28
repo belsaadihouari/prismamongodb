@@ -1,6 +1,6 @@
 import Head from "next/head";
 import FormUser from "@/component/formUser";
-import formusercss from "@/styles/formUser.module.css";
+import formusercss from "@/style/formUser.module.css";
 export default function Home({ posts }) {
   return (
     <>
@@ -18,8 +18,4 @@ export default function Home({ posts }) {
   );
 }
 
-export async function getStaticProps() {
-  return {
-    props: {}, 
-  };
-}
+
