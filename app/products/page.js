@@ -3,7 +3,7 @@ import Cardproduct from "@/component/cardproduct";
 import "@/app/globals.css";
 async function getData() {
   const res = await fetch("http://localhost:3000/api/get/getproductmany", {
-    cache: "no-cache",
+    cache:"no-cache"
   });
   if (!res.ok) {
     throw new Error("Failed to fetch data");
@@ -30,6 +30,9 @@ export default async function Products() {
             id={item.id}
             title={item.title}
             descrip={item.description}
+            createdBy={item.user.username}
+            deleted={item.user.deleted}
+            iduser={item.user.id}
           />
         ))}
       </div>

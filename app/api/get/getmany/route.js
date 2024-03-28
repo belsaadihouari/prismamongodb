@@ -4,7 +4,11 @@ import prisma from "@/util/prismaClient";
 export async function GET(req) {
 
   try {
-    const getUser = await prisma.user.findMany();
+    const getUser = await prisma.user.findMany({
+      where:{
+        deleted:false
+      }
+    });
     return NextResponse.json(getUser);
   } catch {
     return NextResponse.status(500).json({ message: "internal server error" });

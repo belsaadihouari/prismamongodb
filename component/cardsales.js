@@ -4,14 +4,27 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { useRouter } from "next/navigation";
 import { motion, useAnimation } from "framer-motion";
-const Cardsales = ({title,price,id,salemen}) => {
+const Cardsales = ({title,price,id,salemen,deleted,iduser}) => {
   const controls = useAnimation();
   const router = useRouter()
  async function handlerdelete(id){
-const res = await fetch(`http://localhost:3000/api/delete/deletesale/${id}`)
+const res = await fetch(`http://localhost:3000/api/delete/deletesale/${id}`,{
+  cache:"no-cache",
+})
 const data = await res.json();
 router.push('/sales')
 
+  }
+
+  async function handlerrestaure(iduser) {
+    
+    const res = await fetch(
+      `http://localhost:3000/api/restore/restoreUser/${iduser}`
+    ,{
+      cache:"no-cache",
+    });
+    const data = await res.json();
+    router.push("/");
   }
   useEffect(() => {
     controls.start({
@@ -47,7 +60,16 @@ router.push('/sales')
       <h3>{title}</h3>
       <h5 >{price}</h5>
       <h6>Sold By: {salemen}</h6>
-      
+      <h6 style={{ color: "Black", fontSize: "15px" }}>
+            {deleted && "User has been Deleted"}
+          </h6>
+          {deleted && (
+            <button onClick={() => {
+              handlerrestaure(iduser)
+            }} style={{ padding: "6px", cursor: "pointer" }}>
+              Restore user
+            </button>
+          )}
       </div>
     </div>
     </motion.div>

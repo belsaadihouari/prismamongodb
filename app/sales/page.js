@@ -3,7 +3,8 @@ import Cardsales from "@/component/cardsales";
 import "@/app/globals.css";
 async function getData() {
   const res = await fetch("http://localhost:3000/api/get/getsalesmany", {
-    cache: "no-cache",
+    cache:"no-cache",
+    
   });
   if (!res.ok) {
     throw new Error("Failed to fetch data");
@@ -31,6 +32,8 @@ export default async function Products() {
             title={item.productTitle}
             price={item.price}
             salemen={item.username}
+            deleted={item.deleted}
+            iduser={item.iduser}
           />
         ))}
       </div>

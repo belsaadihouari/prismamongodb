@@ -1,3 +1,4 @@
+
 import { NextResponse } from "next/server";
 import prisma from "@/util/prismaClient";
 
@@ -12,7 +13,9 @@ export async function GET(req) {
         },
         user: {
           select: {
+            id:true,
             username: true,
+            deleted:true,
           },
         },
       },
@@ -23,6 +26,8 @@ export async function GET(req) {
       price: sale.price,
       productTitle: sale.product.title,
       username: sale.user.username,
+      deleted:sale.user.deleted,
+      iduser:sale.user.id,
     }));
 
     return NextResponse.json(salesWithDetails);

@@ -9,7 +9,9 @@ const Card = ({ username, email, id }) => {
   const controls = useAnimation();
   const router = useRouter();
   async function handlerdelete(id) {
-    const res = await fetch(`http://localhost:3000/api/delete/deleteone/${id}`);
+    const res = await fetch(`http://localhost:3000/api/delete/deleteone/${id}`,{
+      cache:"no-cache",
+    });
     const data = await res.json();
    
     if (data) {

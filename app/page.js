@@ -3,7 +3,10 @@ import Card from "@/component/card";
 import "@/app/globals.css";
 async function getData() {
   const res = await fetch("http://localhost:3000/api/get/getmany", {
-    cache: "no-cache",
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
   if (!res.ok) {
     throw new Error("Failed to fetch data");

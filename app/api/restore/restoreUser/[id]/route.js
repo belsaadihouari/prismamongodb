@@ -1,20 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/util/prismaClient";
+
 export async function GET(NextRequest, { params }) {
-  const Userid = params.id;
   try {
+    const id = params.id;
     await prisma.user.update({
       where: {
-        id: Userid,
+        id: id,
       },
       data: {
-        deleted: true,
+        deleted: false,
       },
     });
-    return NextResponse.json({ message: "user deleted successfuly" });
+    return NextResponse.json({ message: "User Restaured" });
   } catch (error) {
-    return NextResponse.json({ message: "iternal server error" });
-  } finally {
-    await prisma.$disconnect();
+    return NextResponse.json({ message: "internal server error" });
   }
 }
