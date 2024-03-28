@@ -1,14 +1,14 @@
+import { NextResponse } from "next/server";
+
 import prisma from "@/util/prismaClient";
 
-export default async function handlergetproduct(req, res) {
-  if (req.method === "GET") {
-    try {
-      const getProduct = await prisma.product.findMany();
-      return res.json(getProduct);
-    } catch (error) {
-      return res.json({ error: "internal server error" });
-    }finally {
-      await prisma.$disconnect();
-    }
+export  async function GET(req) {
+  try {
+    const getProduct = await prisma.product.findMany();
+    return NextResponse.json(getProduct);
+  } catch (error) {
+    return NextResponse.json({ error: "internal server error" });
+  } finally {
+    await prisma.$disconnect();
   }
 }

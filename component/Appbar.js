@@ -1,4 +1,3 @@
-
 import {
   Toolbar,
   AppBar,
@@ -37,7 +36,7 @@ const Appbar = ({ drawerWidth, showDrawer }) => {
           color="inherit"
           href="/"
         >
-          Prisma App
+          Prisma App Mongodb
         </Link>
 
         <Typography mr={2} variant="body1" color="inherit">

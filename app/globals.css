@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
 }
+
 .container {
   width: calc(100% - 240px);
   height: auto;
@@ -11,7 +12,9 @@
   position: absolute;
   right: 0;
   gap: 2rem;
+  
 }
+
 
 .card {
   background-color: rgb(25,118,210);
@@ -47,3 +50,4 @@ h6,h5 {
   transform: translate(-50%, -50%);
   
 }
+

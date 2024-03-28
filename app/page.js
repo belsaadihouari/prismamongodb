@@ -1,8 +1,10 @@
 import Head from "next/head";
 import Card from "@/component/card";
-
+import "@/app/globals.css";
 async function getData() {
-  const res = await fetch("http://localhost:3000/api/get/getmany");
+  const res = await fetch("http://localhost:3000/api/get/getmany", {
+    cache: "no-cache",
+  });
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
@@ -21,7 +23,7 @@ export default async function Pageone() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="container">
+      <div className="container border">
         {posts.map((item, index) => (
           <Card
             key={index}
