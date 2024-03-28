@@ -8,9 +8,7 @@ const Cardsales = ({title,price,id,salemen,deleted,iduser}) => {
   const controls = useAnimation();
   const router = useRouter()
  async function handlerdelete(id){
-const res = await fetch(`http://localhost:3000/api/delete/deletesale/${id}`,{
-  cache:"no-cache",
-})
+const res = await fetch(`http://localhost:3000/api/delete/deletesale/${id}`)
 const data = await res.json();
 router.push('/sales')
 
@@ -20,9 +18,7 @@ router.push('/sales')
     
     const res = await fetch(
       `http://localhost:3000/api/restore/restoreUser/${iduser}`
-    ,{
-      cache:"no-cache",
-    });
+    );
     const data = await res.json();
     router.push("/");
   }

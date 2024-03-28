@@ -9,10 +9,7 @@ const CardProduct = ({ title, descrip, id, createdBy, deleted,iduser }) => {
   const router = useRouter();
   async function handlerdelete(id) {
     const res = await fetch(
-      `http://localhost:3000/api/delete/deleteproductone/${id}`
-    ,{
-      cache:"no-cache",
-    });
+      `http://localhost:3000/api/delete/deleteproductone/${id}`);
     const data = await res.json();
     router.push("/products");
   }
@@ -23,9 +20,7 @@ const CardProduct = ({ title, descrip, id, createdBy, deleted,iduser }) => {
     
     const res = await fetch(
       `http://localhost:3000/api/restore/restoreUser/${iduser}`
-    ,{
-      cache:"no-cache",
-    });
+    );
     const data = await res.json();
     router.push("/");
   }

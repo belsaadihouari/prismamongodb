@@ -17,6 +17,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import card from "@/component/card";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 const drawerWidth = 240;
 
 function ResponsiveDrawer(props) {
@@ -68,12 +69,13 @@ function ResponsiveDrawer(props) {
       <Toolbar />
       <Divider />
       <List>
-        {["User", "Products", "sales"].map((text, index) => (
+        {["user", "products", "sales"].map((text, index) => (
+          <Link prefetch={false} key={text} href={text === "user" ? "/" : `/${text}`} >
           <ListItem
-            key={text}
-            onClick={() => {
-              handlenavigate(text);
-            }}
+            
+            // onClick={() => {
+            //   handlenavigate(text);
+            // }}
             disablePadding
           >
             <ListItemButton>
@@ -83,6 +85,7 @@ function ResponsiveDrawer(props) {
               <ListItemText primary={text} />
             </ListItemButton>
           </ListItem>
+          </Link>
         ))}
       </List>
       <Divider />

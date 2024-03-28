@@ -1,12 +1,12 @@
+export const dynamic = "force-dynamic";
+
 import Head from "next/head";
 import Card from "@/component/card";
 import "@/app/globals.css";
 async function getData() {
   const res = await fetch("http://localhost:3000/api/get/getmany", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    cache: "no-store",
+   
   });
   if (!res.ok) {
     throw new Error("Failed to fetch data");
